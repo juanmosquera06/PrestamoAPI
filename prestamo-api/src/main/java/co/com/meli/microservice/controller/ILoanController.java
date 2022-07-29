@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import co.com.meli.microservice.dto.LoanDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +25,7 @@ public interface ILoanController {
     @Operation(summary = "Create a loan", description = "Create a loan request", responses = {
             @ApiResponse(responseCode = "201", description = "Loan created") })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> createLoan(@RequestBody Object loan);
+    public ResponseEntity<Object> createLoan(@RequestBody LoanDto loan);
 
     @Operation(summary = "Get all loans by date range", description = "Returns all loans with date range filter", responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation") })

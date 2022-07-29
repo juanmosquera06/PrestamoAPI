@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
-@Table(name = "TARGET_CONFIG")
+@Table(name = "TARGET_CONFIG", schema = "CREDITDB")
 @org.hibernate.annotations.Table(comment = "Stores user target settings", appliesTo = "target_config")
 @Data
 @AllArgsConstructor
@@ -38,10 +38,9 @@ public class TargetConfig {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TARGET_CONFIG")
-    @Comment("Table identifier")
     private Long id;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 50)
     @Comment("Configuration name")
     @NotNull
     private String description;
@@ -68,7 +67,7 @@ public class TargetConfig {
     @Comment("Defines the maximum value")
     private Double maxValue;
 
-    @Column(name = "CREATION_USER")
+    @Column(name = "CREATION_USER", length = 100)
     @Comment("Audit for record creation user")
     @NotNull
     private String creationUser;
@@ -79,7 +78,7 @@ public class TargetConfig {
     @NotNull
     private Date creationDate;
 
-    @Column(name = "MODIFICATION_USER")
+    @Column(name = "MODIFICATION_USER", length = 100)
     @Comment("Audit for record modification user")
     private String modificationUser;
 

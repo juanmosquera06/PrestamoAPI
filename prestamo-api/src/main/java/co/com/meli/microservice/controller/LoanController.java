@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.meli.microservice.dto.LoanDto;
+import co.com.meli.microservice.service.ILoanService;
 import lombok.AllArgsConstructor;
 
 /**
@@ -22,9 +24,11 @@ import lombok.AllArgsConstructor;
 @CrossOrigin(origins = "*")
 public class LoanController implements ILoanController {
 
+    private ILoanService loanService;
+
     @Override
-    public ResponseEntity<Object> createLoan(Object loan) {
-        // TODO Auto-generated method stub
+    public ResponseEntity<Object> createLoan(LoanDto loan) {
+        loanService.saveLoan(loan);
         return null;
     }
 

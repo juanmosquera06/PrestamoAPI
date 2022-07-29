@@ -1,10 +1,10 @@
-package co.com.meli.demo;
+package co.com.meli.microservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PrestamoApiApplicationTests {
+class CreditApiApplicationTests {
 
 	@Test
 	void contextLoads() {

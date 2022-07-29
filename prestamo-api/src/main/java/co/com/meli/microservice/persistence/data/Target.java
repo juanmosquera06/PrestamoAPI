@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
-@Table(name = "TARGET")
+@Table(name = "TARGET", schema = "CREDITDB")
 @org.hibernate.annotations.Table(comment = "Stores the different user targets", appliesTo = "target")
 @Data
 @AllArgsConstructor
@@ -41,10 +41,9 @@ public class Target {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TARGET")
-    @Comment("Table identifier")
     private Long id;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 20)
     @Enumerated(EnumType.STRING)
     @Comment("Target name")
     private co.com.meli.microservice.enums.Target description;
@@ -54,7 +53,7 @@ public class Target {
     @NotNull
     private Integer status;
 
-    @Column(name = "CREATION_USER")
+    @Column(name = "CREATION_USER", length = 100)
     @Comment("Audit for record creation user")
     @NotNull
     private String creationUser;
@@ -65,7 +64,7 @@ public class Target {
     @NotNull
     private Date creationDate;
 
-    @Column(name = "MODIFICATION_USER")
+    @Column(name = "MODIFICATION_USER", length = 100)
     @Comment("Audit for record modification user")
     private String modificationUser;
 
@@ -76,5 +75,8 @@ public class Target {
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<TargetConfig> targetConfigs;
+
+    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Client> clients;
 
 }
