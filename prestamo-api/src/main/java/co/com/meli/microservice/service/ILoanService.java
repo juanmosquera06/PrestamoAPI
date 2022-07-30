@@ -4,8 +4,12 @@
 package co.com.meli.microservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import co.com.meli.microservice.dto.LoanDto;
+import co.com.meli.microservice.dto.DebtResponseModel;
+import co.com.meli.microservice.dto.InstallmentResponseModel;
+import co.com.meli.microservice.dto.LoanRequestModel;
+import co.com.meli.microservice.dto.LoanResponseModel;
 import co.com.meli.microservice.persistence.data.Loan;
 
 /**
@@ -14,10 +18,14 @@ import co.com.meli.microservice.persistence.data.Loan;
  */
 public interface ILoanService {
 
+    public List<LoanResponseModel> findAllLoansByDateRange(String dateFrom,
+            String dateTo);
+
+    public InstallmentResponseModel saveLoan(LoanRequestModel requestModel);
+
     public Loan findById(Long id);
 
-    public List<Loan> findAllLoans();
-
-    public LoanDto saveLoan(LoanDto loan);
+    public DebtResponseModel getDebtByIdLoanAndDateFilter(Long loanId,
+            Optional<String> date);
 
 }

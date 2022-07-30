@@ -14,11 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Comment;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,57 +37,38 @@ public class TargetConfig {
     @Column(name = "ID_TARGET_CONFIG")
     private Long id;
 
-    @Column(name = "DESCRIPTION", length = 50)
-    @Comment("Configuration name")
-    @NotNull
+    @Column(name = "DESCRIPTION", columnDefinition = Constant.COLUMN_DEFINITION_STRING_DESCRIPTION_TARGET_CONFIG)
     private String description;
 
-    @Column(name = "TYPE_CONFIG")
-    @Comment("Target config type. Fixed Value=1, Range Value=2")
-    @NotNull
+    @Column(name = "TYPE_CONFIG", columnDefinition = Constant.COLUMN_DEFINITION_STRING_TYPE_CONFIG_TARGET_CONFIG)
     private Integer typeConfig;
 
-    @Column(name = "STATUS")
-    @Comment("Target config status. Active=1, Inactive=0")
-    @NotNull
-    private Integer status;
-
-    @Column(name = "FIXED_VALUE")
-    @Comment("Defines the fixed value of the target configuration")
+    @Column(name = "FIXED_VALUE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_FIXED_VALUE_TARGET_CONFIG)
     private Double value;
 
-    @Column(name = "MIN_VALUE")
-    @Comment("Defines the minimum value")
+    @Column(name = "MIN_VALUE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MIN_VALUE_TARGET_CONFIG)
     private Double minValue;
 
-    @Column(name = "MAX_VALUE")
-    @Comment("Defines the maximum value")
+    @Column(name = "MAX_VALUE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MAX_VALUE_TARGET_CONFIG)
     private Double maxValue;
 
-    @Column(name = "CREATION_USER", length = 100)
-    @Comment("Audit for record creation user")
-    @NotNull
+    @Column(name = "STATUS", columnDefinition = Constant.COLUMN_DEFINITION_STRING_STATUS_TARGET_CONFIG)
+    private Integer status;
+
+    @Column(name = "CREATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_USER_TARGET_CONFIG)
     private String creationUser;
 
-    @Column(name = "CREATION_DATE")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mmz")
-    @Comment("Audit for record creation date")
-    @NotNull
+    @Column(name = "CREATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_TARGET_CONFIG)
     private Date creationDate;
 
-    @Column(name = "MODIFICATION_USER", length = 100)
-    @Comment("Audit for record modification user")
+    @Column(name = "MODIFICATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_USER_TARGET_CONFIG)
     private String modificationUser;
 
-    @Column(name = "MODIFICATION_DATE")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mmz")
-    @Comment("Audit for record modification date")
+    @Column(name = "MODIFICATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_DATE_TARGET_CONFIG)
     private Date modificationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TARGET")
-    @Comment("Target relationship")
-    @NotNull
     private Target target;
 
 }

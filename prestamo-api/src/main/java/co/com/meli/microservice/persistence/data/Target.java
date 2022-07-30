@@ -17,11 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Comment;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,34 +40,23 @@ public class Target {
     @Column(name = "ID_TARGET")
     private Long id;
 
-    @Column(name = "DESCRIPTION", length = 20)
+    @Column(name = "DESCRIPTION", columnDefinition = Constant.COLUMN_DEFINITION_STRING_DESCRIPTION_TARGET)
     @Enumerated(EnumType.STRING)
-    @Comment("Target name")
     private co.com.meli.microservice.enums.Target description;
 
-    @Column(name = "STATUS")
-    @Comment("Target status. Active=1, Inactive=0")
-    @NotNull
+    @Column(name = "STATUS", columnDefinition = Constant.COLUMN_DEFINITION_STRING_STATUS_TARGET)
     private Integer status;
 
-    @Column(name = "CREATION_USER", length = 100)
-    @Comment("Audit for record creation user")
-    @NotNull
+    @Column(name = "CREATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_USER_TARGET)
     private String creationUser;
 
-    @Column(name = "CREATION_DATE")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mmz")
-    @Comment("Audit for record creation date")
-    @NotNull
+    @Column(name = "CREATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_TARGET)
     private Date creationDate;
 
-    @Column(name = "MODIFICATION_USER", length = 100)
-    @Comment("Audit for record modification user")
+    @Column(name = "MODIFICATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_USER_TARGET)
     private String modificationUser;
 
-    @Column(name = "MODIFICATION_DATE")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mmz")
-    @Comment("Audit for record modification date")
+    @Column(name = "MODIFICATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_DATE_TARGET)
     private Date modificationDate;
 
     @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

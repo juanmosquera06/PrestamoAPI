@@ -17,9 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Comment;
 
 import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
@@ -43,22 +40,16 @@ public class Client {
     @Column(name = "ID_CLIENT")
     private Long id;
 
-    @Column(name = "FIRST_NAME", length = 100)
-    @Comment("User first name")
+    @Column(name = "FIRST_NAME", columnDefinition = Constant.COLUMN_DEFINITION_STRING_FIRST_NAME_CLIENT)
     private String firstName;
 
-    @Column(name = "LAST_NAME", length = 100)
-    @Comment("User last name")
+    @Column(name = "LAST_NAME", columnDefinition = Constant.COLUMN_DEFINITION_STRING_LAST_NAME_CLIENT)
     private String lastName;
 
-    @Column(name = "NATIONAL_ID", unique = true, length = 30)
-    @Comment("User national id")
-    @NotNull
+    @Column(name = "NATIONAL_ID", columnDefinition = Constant.COLUMN_DEFINITION_STRING_NATIONAL_ID_CLIENT)
     private String nationalId;
 
-    @Column(name = "TYPE_NATIONAL_ID", length = 5)
-    @Comment("User identity document")
-    @NotNull
+    @Column(name = "TYPE_NATIONAL_ID", columnDefinition = Constant.COLUMN_DEFINITION_STRING_TYPE_NATIONAL_ID_CLIENT)
     private String typeNationalId;
 
     @Column(name = "STATUS", columnDefinition = Constant.COLUMN_DEFINITION_STRING_STATUS_CLIENT)
@@ -78,7 +69,6 @@ public class Client {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TARGET")
-    @NotNull
     private Target target;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

@@ -3,13 +3,18 @@
  */
 package co.com.meli.microservice.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.meli.microservice.dto.LoanDto;
+import co.com.meli.microservice.dto.InstallmentResponseModel;
+import co.com.meli.microservice.dto.LoanRequestModel;
+import co.com.meli.microservice.dto.LoanResponseModel;
 import co.com.meli.microservice.service.ILoanService;
 import lombok.AllArgsConstructor;
 
@@ -27,16 +32,17 @@ public class LoanController implements ILoanController {
     private ILoanService loanService;
 
     @Override
-    public ResponseEntity<Object> createLoan(LoanDto loan) {
-        loanService.saveLoan(loan);
-        return null;
+    public ResponseEntity<InstallmentResponseModel> createLoan(LoanRequestModel loan) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(loanService.saveLoan(loan));
     }
 
     @Override
-    public ResponseEntity<Object> getLoansByDateRange(String dateFrom,
+    public ResponseEntity<List<LoanResponseModel>> getLoansByDateRange(
+            String dateFrom,
             String dateTo) {
-        // TODO Auto-generated method stub
-        return null;
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(loanService.findAllLoansByDateRange(dateFrom, dateTo));
     }
 
 }
