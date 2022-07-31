@@ -3,11 +3,11 @@
  */
 package co.com.meli.microservice.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,26 +21,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoanResponseModel {
 
-    @JsonProperty(value = "id")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_ID)
     private Long id;
 
-    @JsonProperty(value = "amount")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_AMOUNT)
     private Double amount;
 
-    @JsonProperty(value = "term")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_TERM)
     private Integer term;
 
-    @JsonProperty(value = "rate")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_RATE)
     private Double rate;
 
-    @JsonProperty(value = "user_id")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_USER_ID)
     private Long userId;
 
-    @JsonProperty(value = "target")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_TARGET)
     private co.com.meli.microservice.enums.Target target;
 
-    @JsonProperty(value = "date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmZ")
-    private Date date;
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_DATE)
+    private LocalDateTime date;
 
 }

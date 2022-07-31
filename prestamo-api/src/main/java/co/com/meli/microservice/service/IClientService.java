@@ -5,6 +5,8 @@ package co.com.meli.microservice.service;
 
 import java.util.Map;
 
+import co.com.meli.microservice.exception.EntityNotFoundException;
+import co.com.meli.microservice.exception.NoDataFoundException;
 import co.com.meli.microservice.persistence.data.Client;
 
 /**
@@ -13,8 +15,9 @@ import co.com.meli.microservice.persistence.data.Client;
  */
 public interface IClientService {
 
-    public Client findById(Long id);
+    public Client findById(Long id) throws EntityNotFoundException;
 
-    public Map<String, Double> findActiveLoanConditionsByClient(Client client);
+    public Map<String, Double> findActiveLoanConditionsByClient(Client client)
+            throws NoDataFoundException;
 
 }

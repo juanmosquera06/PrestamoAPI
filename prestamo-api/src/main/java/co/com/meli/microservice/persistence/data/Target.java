@@ -3,7 +3,7 @@
  */
 package co.com.meli.microservice.persistence.data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -28,8 +28,8 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
-@Table(name = "TARGET", schema = "CREDITDB")
-@org.hibernate.annotations.Table(comment = "Stores the different user targets", appliesTo = "target")
+@Table(name = Constant.TABLE_STRING_NAME_TARGET, schema = Constant.DATABASE_STRING_SCHEMA)
+@org.hibernate.annotations.Table(comment = Constant.TABLE_STRING_COMMENT_TARGET, appliesTo = Constant.COMMON_STRING_TARGET)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,32 +37,29 @@ public class Target {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_TARGET")
+    @Column(name = Constant.COLUMN_STRING_NAME_ID_TARGET)
     private Long id;
 
-    @Column(name = "DESCRIPTION", columnDefinition = Constant.COLUMN_DEFINITION_STRING_DESCRIPTION_TARGET)
+    @Column(name = Constant.COLUMN_STRING_NAME_DESCRIPTION_TARGET, columnDefinition = Constant.COLUMN_DEFINITION_STRING_DESCRIPTION_TARGET)
     @Enumerated(EnumType.STRING)
     private co.com.meli.microservice.enums.Target description;
 
-    @Column(name = "STATUS", columnDefinition = Constant.COLUMN_DEFINITION_STRING_STATUS_TARGET)
+    @Column(name = Constant.COLUMN_STRING_NAME_STATUS_TARGET, columnDefinition = Constant.COLUMN_DEFINITION_STRING_STATUS_TARGET)
     private Integer status;
 
-    @Column(name = "CREATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_USER_TARGET)
+    @Column(name = Constant.COLUMN_STRING_NAME_CREATION_USER_TARGET, columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_USER_TARGET)
     private String creationUser;
 
-    @Column(name = "CREATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_TARGET)
-    private Date creationDate;
+    @Column(name = Constant.COLUMN_STRING_NAME_CREATION_DATE_TARGET, columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_TARGET)
+    private LocalDateTime creationDate;
 
-    @Column(name = "MODIFICATION_USER", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_USER_TARGET)
+    @Column(name = Constant.COLUMN_STRING_NAME_MODIFICATION_USER_TARGET, columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_USER_TARGET)
     private String modificationUser;
 
-    @Column(name = "MODIFICATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_MODIFICATION_DATE_TARGET)
-    private Date modificationDate;
-
-    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = Constant.COMMON_STRING_TARGET, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<TargetConfig> targetConfigs;
 
-    @OneToMany(mappedBy = "target", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = Constant.COMMON_STRING_TARGET, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Client> clients;
 
 }

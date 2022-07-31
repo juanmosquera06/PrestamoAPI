@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import co.com.meli.microservice.persistence.data.Target;
 import co.com.meli.microservice.persistence.data.TargetConfig;
+import co.com.meli.microservice.util.Constant;
 
 /**
  * @author juan.mosquera
  *
  */
-@Repository(value = "targetConfigRepository")
+@Repository(value = Constant.REPOSITORY_STRING_TARGET_CONFIG)
 public interface ITargetConfigRepository
         extends CrudRepository<TargetConfig, Long> {
 

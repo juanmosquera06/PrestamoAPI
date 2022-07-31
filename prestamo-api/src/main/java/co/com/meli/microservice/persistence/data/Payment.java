@@ -3,7 +3,7 @@
  */
 package co.com.meli.microservice.persistence.data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
  *
  */
 @Entity
-@Table(name = "PAYMENT", schema = "CREDITDB")
-@org.hibernate.annotations.Table(comment = "Stores records of payments made on a loan", appliesTo = "payment")
+@Table(name = Constant.TABLE_STRING_NAME_PAYMENT, schema = Constant.DATABASE_STRING_SCHEMA)
+@org.hibernate.annotations.Table(comment = Constant.TABLE_STRING_COMMENT_PAYMENT, appliesTo = Constant.COMMON_STRING_PAYMENT)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,17 +35,17 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PAYMENT")
+    @Column(name = Constant.COLUMN_STRING_NAME_ID_PAYMENT)
     private Long id;
 
-    @Column(name = "AMOUNT", columnDefinition = Constant.COLUMN_DEFINITION_STRING_AMOUNT_PAYMENT)
+    @Column(name = Constant.COLUMN_STRING_NAME_AMOUNT_PAYMENT, columnDefinition = Constant.COLUMN_DEFINITION_STRING_AMOUNT_PAYMENT)
     private Double amount;
 
-    @Column(name = "CREATION_DATE", columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_PAYMENT)
-    private Date creationDate;
+    @Column(name = Constant.COLUMN_STRING_NAME_CREATION_DATE_PAYMENT, columnDefinition = Constant.COLUMN_DEFINITION_STRING_CREATION_DATE_PAYMENT)
+    private LocalDateTime creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_LOAN")
+    @JoinColumn(name = Constant.COLUMN_STRING_NAME_ID_LOAN)
     @NotNull
     private Loan loan;
 

@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.meli.microservice.dto.DebtResponseModel;
 import co.com.meli.microservice.enums.Target;
+import co.com.meli.microservice.exception.BusinessException;
+import co.com.meli.microservice.exception.DateException;
+import co.com.meli.microservice.exception.EntityNotFoundException;
+import co.com.meli.microservice.exception.NoDataFoundException;
 import co.com.meli.microservice.service.ILoanService;
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 
 /**
@@ -22,25 +27,28 @@ import lombok.AllArgsConstructor;
  *
  */
 @RestController
-@RequestMapping(path = "/api/debts", produces = {
+@RequestMapping(path = Constant.SERVICE_STRING_DEBTS_PATH, produces = {
         MediaType.APPLICATION_JSON_VALUE })
 @AllArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = Constant.COMMON_STRING_ASTERIC)
 public class DebtController implements IDebtController {
 
     private ILoanService loanService;
 
     @Override
     public ResponseEntity<DebtResponseModel> getDebtByLoan(Long loanId,
-            Optional<String> date) {
+            Optional<String> date)
+            throws EntityNotFoundException, NoDataFoundException,
+            BusinessException, DateException {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(loanService.getDebtByIdLoanAndDateFilter(loanId, date));
     }
 
     @Override
-    public ResponseEntity<Object> getTotalDebt(String date, Target target) {
-        // TODO Auto-generated method stub
-        return null;
+    public ResponseEntity<DebtResponseModel> getTotalDebt(Optional<String> date,
+            Optional<Target> target) throws BusinessException, DateException {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(loanService.getDebtByTargetAndDateFilter(date, target));
     }
 
 }

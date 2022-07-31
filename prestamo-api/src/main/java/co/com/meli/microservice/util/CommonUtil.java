@@ -3,11 +3,11 @@
  */
 package co.com.meli.microservice.util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import co.com.meli.microservice.persistence.data.Loan;
@@ -30,35 +30,63 @@ public class CommonUtil {
         return (rate + (rate / (Math.pow((1 + rate), term) - 1))) * amount;
     }
 
-    public static Date parseStringToDate(String date, String format)
-            throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat(format);
-
-        return dateFormat.parse(date);
-    }
-    
-    public static Date parseStringToEndDate(String date, String format)
-            throws ParseException {
-        Date endDate = null;
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
-        calendar.set(Calendar.MILLISECOND, 999);
-        
-        DateFormat dateFormat = new SimpleDateFormat(format);
-        endDate = calendar.getTime();
-
-        return dateFormat.parse(dateFormat.format(endDate));
+    public static LocalDateTime parseStringToEndOfDayDate(String date,
+            String format)
+            throws IllegalArgumentException, DateTimeParseException {
+        return parseStringToStartOfDayDate(date, format).plusHours(23)
+                .plusMinutes(59).plusSeconds(59);
     }
 
-    public static Double calculateLoanDebt(Loan loan, List<Payment> payments) {
+    public static LocalDateTime parseStringToStartOfDayDate(String date,
+            String format)
+            throws IllegalArgumentException, DateTimeParseException {
+        return parseStringToDate(date, format).atStartOfDay();
+    }
+
+    public static LocalDate parseStringToDate(String date, String format)
+            throws IllegalArgumentException, DateTimeParseException
+    {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(format);
+
+        return LocalDate.parse(date, dateFormat);
+    }
+
+    public static Double calculateLoanDebt(Loan loan, List<Payment> payments,
+            LocalDateTime dateFilter) {
         Double sumLoanPayments = null;
+        Double totalLoanDebt = null;
+        Double sumEstimatedPayments = null;
+        Double estimatedDebt = null;
+        Long diffBetweenDates = null;
+
+        diffBetweenDates = ChronoUnit.MONTHS.between(loan.getCreationDate(),
+                dateFilter);
+        if (diffBetweenDates > loan.getTerm()) {
+            diffBetweenDates = Long.valueOf(loan.getTerm().longValue());
+        }
+
+        sumEstimatedPayments = loan.getInstallment()
+                * diffBetweenDates;
+
+        totalLoanDebt = loan.getInstallment() * loan.getTerm();
+
+        estimatedDebt = totalLoanDebt - sumEstimatedPayments;
 
         sumLoanPayments = payments.stream()
                 .mapToDouble(Payment::getAmount).sum();
 
-        return loan.getAmount() - sumLoanPayments;
+        return estimatedDebt - (sumEstimatedPayments - sumLoanPayments);
+    }
+
+    public static Double calculateLoanDebt(Loan loan, List<Payment> payments) {
+        Double sumLoanPayments = null;
+        Double totalLoanDebt = null;
+
+        totalLoanDebt = loan.getInstallment() * loan.getTerm();
+
+        sumLoanPayments = payments.stream().mapToDouble(Payment::getAmount)
+                .sum();
+
+        return totalLoanDebt - sumLoanPayments;
     }
 }

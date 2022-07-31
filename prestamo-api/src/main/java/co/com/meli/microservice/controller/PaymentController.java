@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.meli.microservice.dto.PaymentRequestModel;
 import co.com.meli.microservice.dto.PaymentResponseModel;
+import co.com.meli.microservice.exception.BusinessException;
+import co.com.meli.microservice.exception.EntityNotFoundException;
+import co.com.meli.microservice.exception.NoDataFoundException;
 import co.com.meli.microservice.service.IPaymentService;
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 
 /**
@@ -20,22 +24,19 @@ import lombok.AllArgsConstructor;
  *
  */
 @RestController
-@RequestMapping(path = "/api/payments", produces = {
+@RequestMapping(path = Constant.SERVICE_STRING_PAYMENTS_PATH, produces = {
         MediaType.APPLICATION_JSON_VALUE })
 @AllArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = Constant.COMMON_STRING_ASTERIC)
 public class PaymentController implements IPaymentController {
 
     private IPaymentService paymentService;
 
     @Override
     public ResponseEntity<PaymentResponseModel> recordLoanPayment(Long loanId,
-            PaymentRequestModel payment) {
-        if (null == payment) {
-            return null;
-            // Not implemented yet
-        }
-
+            PaymentRequestModel payment)
+            throws EntityNotFoundException, NoDataFoundException,
+            BusinessException {
         payment.setLoanId(loanId);
 
         return ResponseEntity.status(HttpStatus.CREATED)

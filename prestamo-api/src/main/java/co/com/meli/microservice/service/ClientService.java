@@ -9,6 +9,8 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.stereotype.Service;
 
+import co.com.meli.microservice.exception.EntityNotFoundException;
+import co.com.meli.microservice.exception.NoDataFoundException;
 import co.com.meli.microservice.persistence.data.Client;
 import co.com.meli.microservice.persistence.data.TargetConfig;
 import co.com.meli.microservice.repository.IClientRepository;
@@ -20,7 +22,7 @@ import lombok.AllArgsConstructor;
  * @author juan.mosquera
  *
  */
-@Service(value = "clientService")
+@Service(value = Constant.SERVICE_STRING_CLIENT)
 @AllArgsConstructor
 public class ClientService implements IClientService {
 
@@ -28,25 +30,37 @@ public class ClientService implements IClientService {
     private ITargetConfigRepository targetConfigRepository;
     
     @Override
-    public Client findById(Long id) {
-        return clientRepository.findById(id).orElse(null);
+    public Client findById(Long id) throws EntityNotFoundException {
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String
+                        .format(Constant.ERROR_STRING_ENTITY_NOT_FOUND,
+                                Client.class.getSimpleName(), id)));
     }
 
     @Override
-    public Map<String, Double> findActiveLoanConditionsByClient(Client client) {
+    public Map<String, Double> findActiveLoanConditionsByClient(Client client)
+            throws NoDataFoundException {
         Map<String, Double> loanConditions = new HashMap<>();
 
         Iterable<TargetConfig> targetConfigs = targetConfigRepository
                 .findByTargetAndStatusOrderByCreationDateDesc(
                         client.getTarget(),
                 Constant.COMMON_INTEGER_ACTIVE_STATUS);
+        if (null == targetConfigs || !targetConfigs.iterator().hasNext()) {
+            throw new NoDataFoundException(
+                    String.format(Constant.ERROR_STRING_NOT_DATA_FOUND,
+                            Client.class.getSimpleName()));
+        }
 
-        // TODO NullPointer validation
         loanConditions.put(Constant.LOAN_CONDITION_STRING_RATE, StreamSupport
                 .stream(targetConfigs.spliterator(), false)
                 .filter(targetConfig -> Constant.LOAN_CONDITION_STRING_RATE
                         .equalsIgnoreCase(targetConfig.getDescription()))
-                .findFirst().orElse(null).getValue());
+                .findFirst()
+                .orElseThrow(() -> new NoDataFoundException(
+                        String.format(Constant.ERROR_STRING_ENTITY_NOT_FOUND,
+                                TargetConfig.class.getSimpleName())))
+                .getValue());
 
         return loanConditions;
     }

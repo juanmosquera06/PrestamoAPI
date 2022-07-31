@@ -5,6 +5,7 @@ package co.com.meli.microservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +19,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PaymentResponseModel {
 
-    @JsonProperty(value = "id")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_ID)
     private Long id;
 
-    @JsonProperty(value = "loan_id")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_LOAN_ID)
     private Long loanId;
 
-    @JsonProperty(value = "debt")
+    @JsonProperty(value = Constant.COMMON_STRING_JSONPROPERTY_DEBT)
     private Double debt;
 
 }

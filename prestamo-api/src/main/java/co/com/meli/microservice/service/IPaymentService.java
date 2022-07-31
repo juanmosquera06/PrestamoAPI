@@ -3,13 +3,11 @@
  */
 package co.com.meli.microservice.service;
 
-import java.util.Date;
-import java.util.List;
-
 import co.com.meli.microservice.dto.PaymentRequestModel;
 import co.com.meli.microservice.dto.PaymentResponseModel;
-import co.com.meli.microservice.persistence.data.Loan;
-import co.com.meli.microservice.persistence.data.Payment;
+import co.com.meli.microservice.exception.BusinessException;
+import co.com.meli.microservice.exception.EntityNotFoundException;
+import co.com.meli.microservice.exception.NoDataFoundException;
 
 /**
  * @author juan.mosquera
@@ -17,9 +15,8 @@ import co.com.meli.microservice.persistence.data.Payment;
  */
 public interface IPaymentService {
 
-    public PaymentResponseModel savePayment(PaymentRequestModel requestModel);
-
-    public List<Payment> getPaymentsByLoanAndDateRange(Loan loan,
-            Date creationDateStart, Date creationDateEnd);
+    public PaymentResponseModel savePayment(PaymentRequestModel requestModel)
+            throws EntityNotFoundException, NoDataFoundException,
+            BusinessException;
 
 }
