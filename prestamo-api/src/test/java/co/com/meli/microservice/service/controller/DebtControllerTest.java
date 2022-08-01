@@ -22,7 +22,9 @@ import co.com.meli.microservice.dto.DebtResponseModel;
 import co.com.meli.microservice.service.ILoanService;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the DebtController class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

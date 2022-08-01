@@ -23,7 +23,13 @@ import co.com.meli.microservice.util.MapperUtil;
 import lombok.AllArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * Business logic that implements IClientService interface. It contains the
+ * business logic that allows you to apply payments to a loan and consult the
+ * payments associated with it.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see IPaymentService
  *
  */
 @Service(value = Constant.SERVICE_STRING_PAYMENT)
@@ -52,6 +58,22 @@ public class PaymentService implements IPaymentService {
         return response;
     }
 
+    /**
+     * Build entity Payment from the request object information.
+     * 
+     * @param payment
+     *            payment information.
+     * @param requestModel
+     *            DTO with request object information.
+     * @return Payment entity.
+     * @throws EntityNotFoundException
+     *             if loan does not exist.
+     * @throws NoDataFoundException
+     *             if there is an error getting the previous payments.
+     * @throws BusinessException
+     *             if any entered value is invalid.
+     * @see Payment
+     */
     private Payment buildPaymentEntity(Payment payment,
             PaymentRequestModel requestModel)
             throws EntityNotFoundException, NoDataFoundException,

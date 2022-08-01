@@ -24,7 +24,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * Entity class annotated with @Entity that contains the information related to
+ * the loan.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see Entity
  *
  */
 @Entity
