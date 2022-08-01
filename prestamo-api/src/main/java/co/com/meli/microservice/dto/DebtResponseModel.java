@@ -11,7 +11,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * DTO that contains the information of the response of the debt model.
+ * </p>
+ * 
+ * It have annotations JsonProperty that can be used to define an object field
+ * to be used (serialized, deserialized) as a logical property.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see JsonProperty
  *
  */
 @Data

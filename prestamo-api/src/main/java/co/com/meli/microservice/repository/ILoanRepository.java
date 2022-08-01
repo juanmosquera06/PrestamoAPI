@@ -13,13 +13,29 @@ import co.com.meli.microservice.persistence.data.Loan;
 import co.com.meli.microservice.util.Constant;
 
 /**
- * @author juan.mosquera
+ * Repository class annotated with @Repository that implement Data Access Object
+ * pattern for Loan entity.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see Repository
+ * @see Loan
  *
  */
 @Repository(value = Constant.REPOSITORY_STRING_LOAN)
 public interface ILoanRepository extends CrudRepository<Loan, Long> {
 
-    List<Loan> findAllByCreationDateBetween(LocalDateTime creationDateStart,
+    /**
+     * Get all loans with a date range criteria.
+     * 
+     * @param creationDateStart
+     *            creation date start.
+     * @param creationDateEnd
+     *            creation date end.
+     * @return a list of loans.
+     */
+    public List<Loan> findAllByCreationDateBetween(
+            LocalDateTime creationDateStart,
             LocalDateTime creationDateEnd);
 
 }

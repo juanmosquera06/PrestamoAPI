@@ -20,7 +20,19 @@ import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * Controller that is responsible for handling the different HTTP requests about
+ * payments.
+ * </p>
+ * 
+ * Each request handling method of the class automatically serializes the
+ * objects returned in the HTTP response.
+ * </p>
+ * 
+ * Implement IPaymentController interface.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see IPaymentController
  *
  */
 @RestController

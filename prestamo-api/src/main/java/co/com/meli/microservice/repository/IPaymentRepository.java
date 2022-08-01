@@ -13,12 +13,25 @@ import co.com.meli.microservice.persistence.data.Payment;
 import co.com.meli.microservice.util.Constant;
 
 /**
- * @author juan.mosquera
+ * Repository class annotated with @Repository that implement Data Access Object
+ * pattern for Payment entity.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see Repository
+ * @see Payment
  *
  */
 @Repository(value = Constant.REPOSITORY_STRING_PAYMENT)
 public interface IPaymentRepository extends CrudRepository<Payment, Long> {
 
-    List<Payment> findAllByLoan(Loan loan);
+    /**
+     * Get all payments applied to a loan.
+     * 
+     * @param loan
+     *            loan to consult
+     * @return a list of payments.
+     */
+    public List<Payment> findAllByLoan(Loan loan);
 
 }

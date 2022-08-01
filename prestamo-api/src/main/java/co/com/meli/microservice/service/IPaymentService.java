@@ -10,11 +10,27 @@ import co.com.meli.microservice.exception.EntityNotFoundException;
 import co.com.meli.microservice.exception.NoDataFoundException;
 
 /**
- * @author juan.mosquera
+ * Payment related business logic interface.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
  *
  */
 public interface IPaymentService {
 
+    /**
+     * Record a payment.
+     * 
+     * @param requestModel
+     *            DTO with payment information.
+     * @return DTO with payment information .
+     * @throws EntityNotFoundException
+     *             if loan does not exist.
+     * @throws NoDataFoundException
+     *             if there is an error getting the previous payments.
+     * @throws BusinessException
+     *             if any entered value is invalid.
+     */
     public PaymentResponseModel savePayment(PaymentRequestModel requestModel)
             throws EntityNotFoundException, NoDataFoundException,
             BusinessException;

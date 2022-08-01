@@ -40,7 +40,9 @@ import co.com.meli.microservice.util.Constant;
 import co.com.meli.microservice.util.MapperUtil;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the LoanService class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest

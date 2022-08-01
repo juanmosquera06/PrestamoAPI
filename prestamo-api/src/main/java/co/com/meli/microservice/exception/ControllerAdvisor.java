@@ -15,12 +15,27 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import co.com.meli.microservice.dto.ErrorResponseModel;
 
 /**
- * @author juan.mosquera
+ * Allows to handle exceptions across the whole application in one global
+ * handling component.
+ * 
+ * @see 0.0.1
+ * @author Juan Felipe Mosquera
  *
  */
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
+    /**
+     * Interceptor of exceptions thrown by methods that contains
+     * EntityNotFoundException.
+     * 
+     * @param ex
+     *            exception.
+     * @param request
+     *            web request.
+     * @return an entity that contains information about exception.
+     * @see EntityNotFoundException
+     */
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Object> handleEntityNotFoundException(
             EntityNotFoundException ex, WebRequest request) {
@@ -35,6 +50,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
+    /**
+     * Interceptor of exceptions thrown by methods that contains
+     * NoDataFoundException.
+     * 
+     * @param ex
+     *            exception.
+     * @param request
+     *            web request.
+     * @return an entity that contains information about exception.
+     * @see NoDataFoundException
+     */
     @ExceptionHandler(NoDataFoundException.class)
     public ResponseEntity<Object> handleNoDataFoundException(
             NoDataFoundException ex, WebRequest request) {
@@ -49,6 +75,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 
+    /**
+     * Interceptor of exceptions thrown by methods that contains
+     * BusinessException.
+     * 
+     * @param ex
+     *            exception.
+     * @param request
+     *            web request.
+     * @return an entity that contains information about exception.
+     * @see BusinessException
+     */
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handleBusinessException(
             BusinessException ex, WebRequest request) {
@@ -64,6 +101,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 .body(response);
     }
 
+    /**
+     * Interceptor of exceptions thrown by methods that contains DateException.
+     * 
+     * @param ex
+     *            exception.
+     * @param request
+     *            web request.
+     * @return an entity that contains information about exception.
+     * @see DateException
+     */
     @ExceptionHandler(DateException.class)
     public ResponseEntity<Object> handleDateException(DateException ex,
             WebRequest request) {
