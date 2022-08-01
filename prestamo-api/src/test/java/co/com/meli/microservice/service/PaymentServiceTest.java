@@ -31,7 +31,9 @@ import co.com.meli.microservice.util.Constant;
 import co.com.meli.microservice.util.MapperUtil;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the PaymentService class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest

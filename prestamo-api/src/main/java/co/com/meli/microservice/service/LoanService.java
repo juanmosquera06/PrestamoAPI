@@ -33,7 +33,13 @@ import co.com.meli.microservice.util.MapperUtil;
 import lombok.AllArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * Business logic that implements IClientService interface. It contains the
+ * business logic that allows getting the information of the loans, registering
+ * new loans and getting the debt of each of them.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see ILoanService
  *
  */
 @Service(value = Constant.SERVICE_STRING_LOAN)
@@ -87,6 +93,24 @@ public class LoanService implements ILoanService {
         return mapperUtil.loanToInstallmentResponseModel(entity);
     }
 
+    /**
+     * Build entity Loan from the request object information.
+     * 
+     * @param loan
+     *            loan information.
+     * @param requestModel
+     *            DTO with request object information.
+     * @return Loan entity.
+     * @throws EntityNotFoundException
+     *             if the client is not found to create the loan.
+     * @throws NoDataFoundException
+     *             if there are no loan conditions of the client's target to
+     *             create the loan.
+     * @throws BusinessException
+     *             if the credit rate cannot be obtained or any of the values
+     *             entered is an invalid value.
+     * @see Loan
+     */
     private Loan buildLoanEntity(Loan loan, LoanRequestModel requestModel)
             throws EntityNotFoundException, NoDataFoundException,
             BusinessException {

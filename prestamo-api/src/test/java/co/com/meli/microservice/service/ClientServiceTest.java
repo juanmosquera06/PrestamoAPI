@@ -31,7 +31,9 @@ import co.com.meli.microservice.repository.ITargetConfigRepository;
 import co.com.meli.microservice.util.Constant;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the ClientService class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest

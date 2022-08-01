@@ -4,11 +4,17 @@
 package co.com.meli.microservice.util;
 
 /**
- * @author juan.mosquera
+ * Defines constants values used across the whole application.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
  *
  */
 public class Constant {
 
+    /**
+     * Class constructor.
+     */
     private Constant() {
     }
 
@@ -100,7 +106,8 @@ public class Constant {
     public static final String ERROR_STRING_LOAN_RATE_NOT_FOUND = "Loan rate not found";
     public static final String ERROR_STRING_ERROR_GETTING_LOAN_INSTALLMENT = "An error has occurred getting the loan installment";
     public static final String ERROR_STRING_VALUE_IS_NOT_A_VALID_NUMBER = "Value '%s' is not a valid number";
-    public static final String ERROR_STRING_INVALID_PATTERN_OR_DATE_CANNOT_BE_PARSE = "Pattern is invalid or date cannot be parsed";
+    public static final String ERROR_STRING_INVALID_PATTERN_OR_DATE_CANNOT_BE_PARSE = "Pattern is invalid or date cannot be parsed. Be sure to use the format "
+            + COMMON_STRING_DATE_FORMAT;
 
     public static final String REPOSITORY_STRING_CLIENT = "clientRepository";
     public static final String REPOSITORY_STRING_LOAN = "loanRepository";

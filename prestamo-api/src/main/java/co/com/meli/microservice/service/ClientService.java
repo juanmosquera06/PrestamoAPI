@@ -19,7 +19,13 @@ import co.com.meli.microservice.util.Constant;
 import lombok.AllArgsConstructor;
 
 /**
- * @author juan.mosquera
+ * Business logic that implements IClientService interface. It contains the
+ * business logic that allows getting client information and parameterized loan
+ * conditions.
+ * 
+ * @since 0.0.1
+ * @author Juan Felipe Mosquera
+ * @see IClientService
  *
  */
 @Service(value = Constant.SERVICE_STRING_CLIENT)

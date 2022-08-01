@@ -21,7 +21,9 @@ import co.com.meli.microservice.dto.PaymentResponseModel;
 import co.com.meli.microservice.service.IPaymentService;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the PaymentController class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

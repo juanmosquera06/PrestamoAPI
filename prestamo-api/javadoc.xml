@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <property name="javadoc_absolute_path" location="javadoc"/>
+	<target name="javadoc" depends="compile" description="generate javadoc">
+	  <delete>
+		<fileset dir="javadoc" />
+	  </delete>
+	  <javadoc destdir="javadoc">
+		<fileset dir="src" >
+		  <include name="*.java"/>
+		</fileset>
+		<classpath refid="project.class.path" />
+		<link href="https://docs.oracle.com/javase/8/docs/api/" />          
+	  </javadoc>
+	  <echo>
+		javadoc written to file://${javadoc_absolute_path}/index.html
+	  </echo> 
+	</target>
+</project>

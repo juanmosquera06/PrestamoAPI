@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import co.com.meli.microservice.util.CommonUtil;
 
 /**
- * @author juan.mosquera
+ * Unit tests of the CommonUtil class.
+ * 
+ * @author Juan Felipe Mosquera
  *
  */
 @SpringBootTest
