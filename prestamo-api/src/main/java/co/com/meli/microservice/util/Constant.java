@@ -32,6 +32,8 @@ public class Constant {
     public static final String COMMON_STRING_LEFT_BRACKET = "{";
 
     public static final String COMMON_STRING_DATE = "date";
+    public static final String COMMON_STRING_AMOUNT = "amount";
+    public static final String COMMON_STRING_TERM = "term";
     public static final String COMMON_STRING_TARGET = "target";
     public static final String COMMON_STRING_LOAN_ID = "loanId";
     public static final String COMMON_STRING_DATE_FROM = "dateFrom";
@@ -91,12 +93,13 @@ public class Constant {
 
     public static final String LOAN_CONDITION_STRING_RATE = "rate";
 
-    public static final String ERROR_STRING_ENTITY_NOT_FOUND = "Entity %s with id %s not found";
-    public static final String ERROR_STRING_NOT_DATA_FOUND = "No data found in entity %s";
+    public static final String ERROR_STRING_ENTITY_NOT_FOUND = "Entity '%s' with id '%s' not found";
+    public static final String ERROR_STRING_NOT_DATA_FOUND = "No data found in entity '%s'";
     public static final String ERROR_STRING_ERROR_GETTING_LOAN_DEBT = "An error has occurred getting the loan debt";
     public static final String ERROR_STRING_PAYMENT_AMOUNT_EXCEEDS_LOAN_DEBT = "Payment amount exceeds the loan debt";
     public static final String ERROR_STRING_LOAN_RATE_NOT_FOUND = "Loan rate not found";
     public static final String ERROR_STRING_ERROR_GETTING_LOAN_INSTALLMENT = "An error has occurred getting the loan installment";
+    public static final String ERROR_STRING_VALUE_IS_NOT_A_VALID_NUMBER = "Value '%s' is not a valid number";
     public static final String ERROR_STRING_INVALID_PATTERN_OR_DATE_CANNOT_BE_PARSE = "Pattern is invalid or date cannot be parsed";
 
     public static final String REPOSITORY_STRING_CLIENT = "clientRepository";

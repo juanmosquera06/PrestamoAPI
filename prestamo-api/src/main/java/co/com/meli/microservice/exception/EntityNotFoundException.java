@@ -7,7 +7,7 @@ package co.com.meli.microservice.exception;
  * @author juan.mosquera
  *
  */
-public class EntityNotFoundException extends Exception {
+public class EntityNotFoundException extends RuntimeException {
 
     /**
      * 

@@ -7,7 +7,7 @@ package co.com.meli.microservice.exception;
  * @author juan.mosquera
  *
  */
-public class NoDataFoundException extends Exception {
+public class NoDataFoundException extends RuntimeException {
 
     /**
      * 

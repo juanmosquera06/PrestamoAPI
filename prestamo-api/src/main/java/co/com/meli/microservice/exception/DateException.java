@@ -7,7 +7,7 @@ package co.com.meli.microservice.exception;
  * @author juan.mosquera
  *
  */
-public class DateException extends Exception {
+public class DateException extends RuntimeException {
 
     /**
      * 

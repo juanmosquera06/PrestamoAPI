@@ -7,7 +7,7 @@ package co.com.meli.microservice.exception;
  * @author juan.mosquera
  *
  */
-public class BusinessException extends Exception {
+public class BusinessException extends RuntimeException {
 
     /**
      * 

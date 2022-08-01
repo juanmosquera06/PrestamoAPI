@@ -94,6 +94,18 @@ public class LoanService implements ILoanService {
         Map<String, Double> loanConditions = null;
         Double rate = null;
 
+        if (!CommonUtil.isValidNumberValue(requestModel.getAmount())) {
+            throw new BusinessException(String.format(
+                    Constant.ERROR_STRING_VALUE_IS_NOT_A_VALID_NUMBER,
+                    Constant.COMMON_STRING_AMOUNT));
+        }
+
+        if (!CommonUtil.isValidNumberValue(requestModel.getTerm())) {
+            throw new BusinessException(String.format(
+                    Constant.ERROR_STRING_VALUE_IS_NOT_A_VALID_NUMBER,
+                    Constant.COMMON_STRING_TERM));
+        }
+
         client = clientService.findById(requestModel.getUserId());
 
         loan.setClient(client);

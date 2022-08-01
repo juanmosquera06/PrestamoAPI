@@ -89,4 +89,12 @@ public class CommonUtil {
 
         return totalLoanDebt - sumLoanPayments;
     }
+
+    public static boolean isValidNumberValue(Double numberValue) {
+        return !numberValue.isNaN() && numberValue >= 0D;
+    }
+
+    public static boolean isValidNumberValue(Integer numberValue) {
+        return numberValue >= 0D;
+    }
 }

@@ -59,6 +59,12 @@ public class PaymentService implements IPaymentService {
         Loan loan = null;
         Double debt = null;
 
+        if (!CommonUtil.isValidNumberValue(requestModel.getAmount())) {
+            throw new BusinessException(String.format(
+                    Constant.ERROR_STRING_VALUE_IS_NOT_A_VALID_NUMBER,
+                    Constant.COMMON_STRING_AMOUNT));
+        }
+
         loan = loanRepository.findById(requestModel.getLoanId())
                 .orElseThrow(() -> new EntityNotFoundException(String.format(
                         Constant.ERROR_STRING_ENTITY_NOT_FOUND,
